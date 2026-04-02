@@ -97,6 +97,11 @@ app.get("/doctors", async (req, res) => {
   }
 });
 
+//..//
+app.get("/", (req, res) => {
+  res.send("AI Receptionist Backend is Running 🚀");
+});
+
 // -------------------- START SERVER --------------------
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
