@@ -91,7 +91,13 @@ app.get("/doctors", async (req, res) => {
 
     if (error) throw error;
 
-    res.json({ doctors: data });
+    res.json({
+  doctors: data.map(d => ({
+    doctor_id: d.id,
+    name: d.name,
+    specialization: d.specialization
+  }))
+});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
