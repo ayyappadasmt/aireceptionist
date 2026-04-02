@@ -81,6 +81,22 @@ app.post("/cancel", async (req, res) => {
   }
 });
 
+//............//
+// -------------------- GET DOCTORS --------------------
+app.get("/doctors", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("doctors")
+      .select("id, name, specialization");
+
+    if (error) throw error;
+
+    res.json({ doctors: data });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // -------------------- START SERVER --------------------
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
